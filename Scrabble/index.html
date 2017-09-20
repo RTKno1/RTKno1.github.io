@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="scrabble.css">
+	<title>Scrabble Word Finder</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	function findWords(){
+		var fletter = document.getElementById("first").value;
+		var lletter = document.getElementById("last").value;
+		var noletter = document.getElementById("num").value;
+		var nvowel = document.getElementById("vol").value;
+		/*
+$fletter = $_REQUEST["first"];
+$lletter = $_REQUEST["last"];
+$nletter = $_REQUEST["nth"];
+$letter = $_REQUEST["let"];
+$noletter = $_REQUEST["number"];
+$nvowel = $_REQUEST["vowel"];
+		*/
+		var ajax = new XMLHttpRequest();
+		ajax.open("GET", "scrabble.php?first="+fletter+"&last="+lletter+"&number="+noletter+"&vowel="+nvowel);
+		ajax.send();
+		ajax.onreadystatechange=function(){
+		 	if(ajax.readyState != 4 || ajax.status != 200)
+		 		return;
+		 	document.getElementById("words").innerHTML = ajax.responseText;
+		 	if(document.getElementById("words").innerHTML == "")
+		 		document.getElementById("words").innerHTML = "No matches found!";
+		 }
+		}
+	</script>
+</head>
+<body>
+<h1>
+	Welcome to Scrabble Word Finder!
+</h1>
+<div id="inputstuff">
+<div id="opening">
+All fields are required!
+</div>
+First Letter:
+<input id="first"type="text" maxlength="1" size="5">
+<br>
+Last Letter:
+<input id="last"type="text" maxlength="1" size="5">
+<br>
+<div "special">
+Number of Letters:
+<input id="num"type="number" size="5">
+<br>
+Number of vowels:
+<input id="vol"type="number" size="5">
+<br>
+</div>
+<button onclick="findWords()">submit</button>
+</div>
+<div id="words"></div>
+<div id="home">
+<p><a href="/~2017rkhan/index.html">Back to Index</a></p>
+</div>
+</body>
+</html>
