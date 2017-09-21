@@ -124,7 +124,7 @@ ul {
 
 /*btn-primary*/
 .btn-primary {
-    background-color : #FFC107;
+    background-color : #1C8DD1;
     }
 
 .btn-primary:hover,
@@ -386,7 +386,7 @@ button:focus,
     }
 
 .progress-item .progress-bar {
-    background-color : #FFC107;
+    background-color : #1C8DD1;
     box-shadow       : none;
     text-align       : right;
     }
